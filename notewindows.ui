@@ -58,6 +58,12 @@
       </property>
       <item>
        <widget class="QLineEdit" name="lineEdit">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>10</height>
+         </size>
+        </property>
         <property name="inputMask">
          <string/>
         </property>
@@ -125,7 +131,7 @@
       <property name="sizeHint" stdset="0">
        <size>
         <width>20</width>
-        <height>7</height>
+        <height>5</height>
        </size>
       </property>
      </spacer>

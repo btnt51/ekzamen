@@ -10,12 +10,14 @@ CONFIG += c++11
 
 SOURCES += \
     allnotes.cpp \
+    cparser.cpp \
     main.cpp \
     mainwindow.cpp \
     notewindows.cpp
 
 HEADERS += \
     allnotes.h \
+    cparser.h \
     mainwindow.h \
     notewindows.h
 
