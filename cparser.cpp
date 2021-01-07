@@ -2,22 +2,27 @@
 
 CParser::CParser(){
 }
-QList <QString> CParser::ReadFile()
+QStringList CParser::ReadFile()
 {
-    QList <QString> Notelist;
-    QFile file("myfile.txt");
-    QString str = "";
-    if ((file.exists())&&(file.open(QIODevice::ReadOnly)))
-    {
-        while(!file.atEnd())
-        {
-               str << file.readLine());
-            qDebug() << str;
-        }
-    }
-
+    QStringList Notelist;
+    QFile file("D:\\db.txt");
+    QByteArray str;
+    if (file.open(QIODevice::ReadOnly))
+        str = file.readAll();
+    file.close();
+    Notelist = QString(str).split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
+    qDebug() << Notelist;
+    return Notelist;
 }
-void CParser::SaveFile(QString, QString, QString)
+void CParser::SaveFile(QString nameOfNote, QString date, QString note)
 {
+    QString saveLine = "NameofNote_"+nameOfNote+"_Date_"+ date + "_Note_"+note.remove("\n");
+    QFile file("D:\\db.txt");
 
+    if(file.open(QIODevice::Append |QIODevice::Text))
+    {
+        QTextStream in(&file);
+        in << "\n" << saveLine;
+    }
+    file.close();
 }

@@ -1,5 +1,6 @@
 #include "notewindows.h"
 #include "ui_notewindows.h"
+#include <QDate>
 
 noteWindows::noteWindows(QWidget *parent) :
     QDialog(parent),
@@ -16,6 +17,7 @@ noteWindows::noteWindows(QWidget *parent) :
 
 noteWindows::~noteWindows()
 {
+
     delete ui;
 }
 
@@ -35,4 +37,14 @@ void noteWindows::setLightTheme()
     ui->plainTextEdit->setStyleSheet("");
     ui->delButton->setStyleSheet("");
     ui->saveButton->setStyleSheet("");
+}
+
+
+void noteWindows::on_saveButton_clicked()
+{
+    QString nameOfNote = ui->lineEdit->text();
+    QString date = QDate::currentDate().toString("dd.MM.yyyy");
+    QString note = ui->plainTextEdit->toPlainText();
+    CParser::SaveFile(nameOfNote,date,note);
+    emit close();
 }

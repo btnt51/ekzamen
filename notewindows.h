@@ -2,6 +2,8 @@
 #define NOTEWINDOWS_H
 
 #include <QDialog>
+#include <QDebug>
+#include "cparser.h"
 
 namespace Ui {
 class noteWindows;
@@ -18,6 +20,7 @@ public:
 public slots:
     void setLightTheme();
     void setDarkTheme();
+    void on_saveButton_clicked();
 
 private:
     Ui::noteWindows *ui;
