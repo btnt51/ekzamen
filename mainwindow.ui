@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>364</width>
-    <height>354</height>
+    <width>343</width>
+    <height>242</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,50 +19,11 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>361</width>
-      <height>311</height>
+      <width>341</width>
+      <height>201</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="1">
-      <spacer name="verticalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>15</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="4" column="1">
-      <spacer name="verticalSpacer_7">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>30</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="5" column="0">
-      <spacer name="horizontalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
      <item row="1" column="1">
       <widget class="QPushButton" name="newNote">
        <property name="minimumSize">
@@ -75,6 +36,22 @@
         <string>PushButton</string>
        </property>
       </widget>
+     </item>
+     <item row="4" column="1">
+      <spacer name="verticalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>30</height>
+        </size>
+       </property>
+      </spacer>
      </item>
      <item row="3" column="2">
       <spacer name="horizontalSpacer_4">
@@ -89,23 +66,42 @@
        </property>
       </spacer>
      </item>
-     <item row="5" column="1">
-      <widget class="QPushButton" name="Settings">
-       <property name="minimumSize">
+     <item row="1" column="2">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
         <size>
-         <width>250</width>
-         <height>30</height>
+         <width>40</width>
+         <height>20</height>
         </size>
        </property>
-       <property name="text">
-        <string>PushButton</string>
+      </spacer>
+     </item>
+     <item row="0" column="1">
+      <spacer name="verticalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
-      </widget>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>15</height>
+        </size>
+       </property>
+      </spacer>
      </item>
      <item row="2" column="1">
       <spacer name="verticalSpacer_6">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -128,18 +124,18 @@
        </property>
       </spacer>
      </item>
-     <item row="5" column="2">
-      <spacer name="horizontalSpacer_6">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
+     <item row="3" column="1">
+      <widget class="QPushButton" name="allNotes">
+       <property name="minimumSize">
         <size>
-         <width>20</width>
-         <height>20</height>
+         <width>240</width>
+         <height>30</height>
         </size>
        </property>
-      </spacer>
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
       <spacer name="horizontalSpacer">
@@ -154,48 +150,6 @@
        </property>
       </spacer>
      </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="allNotes">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="6" column="1">
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>15</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
     </layout>
    </widget>
   </widget>
@@ -204,12 +158,76 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>364</width>
+     <width>343</width>
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menumenu">
+    <property name="title">
+     <string>menu</string>
+    </property>
+    <widget class="QMenu" name="menuChange_them">
+     <property name="title">
+      <string>Change theme</string>
+     </property>
+     <addaction name="actionWhite_theme"/>
+     <addaction name="separator"/>
+     <addaction name="actionDark_theme"/>
+    </widget>
+    <widget class="QMenu" name="menuChange_language">
+     <property name="title">
+      <string>Change language</string>
+     </property>
+     <addaction name="actionEnglish"/>
+     <addaction name="separator"/>
+     <addaction name="actionRussian"/>
+    </widget>
+    <addaction name="menuChange_them"/>
+    <addaction name="separator"/>
+    <addaction name="menuChange_language"/>
+    <addaction name="separator"/>
+    <addaction name="actionNew_note"/>
+    <addaction name="actionAll_notes"/>
+   </widget>
+   <addaction name="menumenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionWhite_theme">
+   <property name="text">
+    <string>White theme</string>
+   </property>
+  </action>
+  <action name="actionDark_theme">
+   <property name="text">
+    <string>Dark theme</string>
+   </property>
+  </action>
+  <action name="actionEnglish">
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="actionRussian">
+   <property name="text">
+    <string>Russian</string>
+   </property>
+  </action>
+  <action name="actionNew_note">
+   <property name="text">
+    <string>New note</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionAll_notes">
+   <property name="text">
+    <string>All notes</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

@@ -15,6 +15,10 @@ public:
     explicit noteWindows(QWidget *parent = nullptr);
     ~noteWindows();
 
+public slots:
+    void setLightTheme();
+    void setDarkTheme();
+
 private:
     Ui::noteWindows *ui;
 };

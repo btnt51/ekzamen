@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "settingswindows.h"
 #include "notewindows.h"
+#include "allnotes.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,15 +18,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_lineEdit_returnPressed();
-
     void on_newNote_clicked();
-
-    void on_Settings_clicked();
+    void on_allNotes_clicked();
+    void setDarkTheme();
+    void setLightTheme();
 
 private:
     Ui::MainWindow *ui;
-    settingsWindows *sWindow;
     noteWindows *note;
+    allNotes *allnotes;
+    QWidget *widget;
 };
 #endif // MAINWINDOW_H
