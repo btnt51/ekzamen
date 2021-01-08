@@ -10,19 +10,21 @@ QStringList CParser::ReadFile()
     if (file.open(QIODevice::ReadOnly))
         str = file.readAll();
     file.close();
-    Notelist = QString(str).split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
-    qDebug() << Notelist;
+    QString temp = QString::fromUtf8(str);
+    Notelist = temp.split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
+    //qDebug() << Notelist;
     return Notelist;
 }
-void CParser::SaveFile(QString nameOfNote, QString date, QString note)
+void CParser::SaveFile(QString nameOfNote, QString note)
 {
-    QString saveLine = "NameofNote_"+nameOfNote+"_Date_"+ date + "_Note_"+note.remove("\n");
+    QString saveLine = "_"+nameOfNote+""+"_"+note;
     QFile file("D:\\db.txt");
 
     if(file.open(QIODevice::Append |QIODevice::Text))
     {
         QTextStream in(&file);
-        in << "\n" << saveLine;
+        in.setCodec("UTF-8");
+        in << "\n" << saveLine.toUtf8();
     }
     file.close();
 }

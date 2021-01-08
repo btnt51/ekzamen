@@ -1,12 +1,11 @@
 #include "notewindows.h"
 #include "ui_notewindows.h"
-#include <QDate>
+
 
 noteWindows::noteWindows(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::noteWindows)
 {
-
     ui->setupUi(this);
     setWindowTitle(tr("New note"));
     setWindowFlag(Qt::WindowContextHelpButtonHint,false);
@@ -43,8 +42,9 @@ void noteWindows::setLightTheme()
 void noteWindows::on_saveButton_clicked()
 {
     QString nameOfNote = ui->lineEdit->text();
-    QString date = QDate::currentDate().toString("dd.MM.yyyy");
     QString note = ui->plainTextEdit->toPlainText();
-    CParser::SaveFile(nameOfNote,date,note);
+    ui->lineEdit->clear();
+    ui->plainTextEdit->clear();
+    CParser::SaveFile(nameOfNote,note);
     emit close();
 }

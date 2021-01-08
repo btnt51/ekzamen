@@ -8,7 +8,7 @@ class CParser
 {
 public:
     CParser();
-    void static SaveFile(QString nameOfNote, QString Date, QString Note);
+    void static SaveFile(QString nameOfNote, QString Note);
     QStringList static ReadFile();
 };
 
