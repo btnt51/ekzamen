@@ -17,46 +17,25 @@ allNotes::~allNotes()
 
 void allNotes::updateTable()
 {
+<<<<<<< Updated upstream
     notes = CParser::ReadFile();               //чтение файла
     std::reverse(notes.begin(),notes.end());   //разворот листа
     qDebug() << notes;                         //отладочная информация
     QStringList nameOfNotes;                   //лист названий заметок
     QStringList notesToOutput;                 //лист содержимого заметок
-    for (int i =0;i < notes.size();i++ ) {     //цикл для отделения названия заметки от ее содержимого
-        QString temp = notes[i];
-        QString temp2 = {};
-        int k = 0,j=0,l=0;
-        int counter={};
-        while(temp[k]!='\0')
-        {
-            if(temp[k]=='_')
-            {
-                counter++;
-                if(counter == 1)
-                    j=k+1;
-                if(counter == 2)
-                {
-                    while (j<k) {
-                        temp2[l] = temp[j];
-                        j++;
-                        l++;
-                    }
-                    nameOfNotes.append(temp2);
-                    j++;
-                    temp2.clear();
-                    l = 0;
-                    while(temp[j]!= '\0')
-                    {
-                        temp2[l] = temp[j];
-                        j++;
-                        l++;
-                    }
-                    notesToOutput.append(temp2);
-                }
-            }
-            k++;
-        }
-    }
+    std::for_each(notes.begin(), notes.end(),[&nameOfNotes, &notesToOutput](QString &element){
+        //цикл для отделения названия заметки от ее содержимого
+        int index = element.indexOf("_");
+        QString temp = {};
+        for (int i = 0; i < index; i++)
+           temp += element[i];
+        nameOfNotes.append(temp);
+        temp.clear();
+        for(int i = index+1; i < element.size();i++)
+            temp += element[i];
+        notesToOutput.append(temp);
+    });
+
     qDebug() << "name of note " << nameOfNotes;             //отладочная информация, вывод листа имен
     qDebug() << "notes to output" << notesToOutput;         //отладочная информация, вывод листа заметок
     table = new QTableWidget(nameOfNotes.size(),2,this);    //создание таблицы

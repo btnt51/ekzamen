@@ -17,9 +17,9 @@ QStringList CParser::ReadFile()
 }
 void CParser::SaveFile(QString nameOfNote, QString note)
 {
-    QString saveLine = "_"+nameOfNote+""+"_"+note;      //создание объекта для разделения названия и текста
+    note.replace("\n","@%");
+    QString saveLine = nameOfNote + "_" + note;      //создание объекта для разделения названия и текста
     QFile file("D:\\db.txt");                           //открытие файла
-
     if(file.open(QIODevice::Append |QIODevice::Text))   //цикл для записи с сохранением перехода на новую строку
     {
         QTextStream in(&file);
