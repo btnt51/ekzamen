@@ -18,15 +18,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_newNote_clicked();
-    void on_allNotes_clicked();
-    void setDarkTheme();
-    void setLightTheme();
+    void on_newNote_clicked();   //слот нажатия на кнопку "Новая заметка"
+    void on_allNotes_clicked();  //слот нажатия на кнопку "Все заметки"
+    void setDarkTheme();         //слот установки темной темы
+    void setLightTheme();        //слот установки светлой темы
 
 private:
-    Ui::MainWindow *ui;
-    noteWindows *note;
-    allNotes *allnotes;
-    QWidget *widget;
+    Ui::MainWindow *ui;          //указатель на форму главного окна
+    noteWindows *note;           //указатель на окно новой заметки
+    allNotes *allnotes;          //указатель на окно всех заметок
+    QWidget *widget;             //указатель на виджет
 };
 #endif // MAINWINDOW_H

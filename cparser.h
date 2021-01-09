@@ -8,8 +8,8 @@ class CParser
 {
 public:
     CParser();
-    void static SaveFile(QString nameOfNote, QString Note);
-    QStringList static ReadFile();
+    void static SaveFile(QString nameOfNote, QString Note);   //сохранение заметок
+    QStringList static ReadFile();                            //чтение заметок из файла
 };
 
 #endif // CPARSER_H

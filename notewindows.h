@@ -18,12 +18,12 @@ public:
     ~noteWindows();
 
 public slots:
-    void setLightTheme();
-    void setDarkTheme();
-    void on_saveButton_clicked();
+    void setLightTheme();               //слот установки светлой темы
+    void setDarkTheme();                //слот установки темной темы
+    void on_saveButton_clicked();       //слот кнопки сохранения
 
 private:
-    Ui::noteWindows *ui;
+    Ui::noteWindows *ui;                //указатель формы заметок
 };
 
 #endif // NOTEWINDOWS_H

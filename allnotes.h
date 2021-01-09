@@ -21,9 +21,9 @@ private slots:
     void updateTable();
 
 private:
-    Ui::allNotes *ui;
-    QTableWidget *table;
-    QStringList notes;
+    Ui::allNotes *ui;      //привязка формы
+    QTableWidget *table;   //указатель на таблицу для отображения элементов
+    QStringList notes;     //лист QString для записи данных из файла
 };
 
 #endif // ALLNOTES_H
