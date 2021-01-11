@@ -13,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->allNotes->setText(tr("All notes"));     //
     connect(ui->actionWhite_theme, SIGNAL(triggered()), this, SLOT(setLightTheme()));     //привязка действия к слотам выбора тем
     connect(ui->actionDark_theme, SIGNAL(triggered()),this, SLOT(setDarkTheme()));        //
-    note = new noteWindows();                    //создание объекта окна
-    allnotes = new allNotes();                   //
+    note = new noteWindows(parent = nullptr,true);                    //создание объекта окна
+                       //
 }
 
 MainWindow::~MainWindow()
@@ -30,6 +30,7 @@ void MainWindow::on_newNote_clicked()
 
 void MainWindow::on_allNotes_clicked()
 {
+    allnotes = new allNotes();
     allnotes->show();                             //
 }
 

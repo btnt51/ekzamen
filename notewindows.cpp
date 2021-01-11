@@ -2,16 +2,36 @@
 #include "ui_notewindows.h"
 
 
-noteWindows::noteWindows(QWidget *parent) :
+noteWindows::noteWindows(QWidget *parent, bool isNew) :
     QDialog(parent),
     ui(new Ui::noteWindows)
 {
-    ui->setupUi(this);                                                  //установка формы
-    setWindowTitle(tr("New note"));                                     //установка названия окна
-    setWindowFlag(Qt::WindowContextHelpButtonHint,false);               //удаление кнопки
-    ui->delButton->setText(tr("Delete"));                               //установка названий кнопок
-    ui->saveButton->setText(tr("Save"));                                //
-    ui->lineEdit->setPlaceholderText(tr("Enter name of the note"));     //установка плэйсхолдера
+    if(isNew)
+    {
+        ui->setupUi(this);                                                  //установка формы
+        setWindowTitle(tr("New note"));                                     //установка названия окна
+        setWindowFlag(Qt::WindowContextHelpButtonHint,false);               //удаление кнопки
+        ui->delButton->setText(tr("Delete"));                               //установка названий кнопок
+        ui->saveButton->setText(tr("Save"));                                //
+        ui->lineEdit->setPlaceholderText(tr("Enter name of the note"));     //установка плэйсхолдера
+        //connect(this, &QDialog::done, this, &noteWindows::emitSignal);
+    }
+}
+
+noteWindows::noteWindows(QWidget *parent, QString name, QString note, bool isNew) :
+    QDialog(parent), ui(new Ui::noteWindows)
+{
+    if(!isNew)
+    {
+        ui->setupUi(this);                                                  //установка формы
+        setWindowTitle(tr("Note") + name);                                     //установка названия окна
+        setWindowFlag(Qt::WindowContextHelpButtonHint,false);               //удаление кнопки
+        ui->delButton->setText(tr("Delete"));                               //установка названий кнопок
+        ui->saveButton->setText(tr("Save"));
+        ui->lineEdit->setText(name);
+        ui->plainTextEdit->appendPlainText(note);
+        connect(this, &QDialog::finished, this, &noteWindows::emitSignal);
+    }
 }
 
 noteWindows::~noteWindows()
@@ -41,10 +61,17 @@ void noteWindows::setLightTheme()
 
 void noteWindows::on_saveButton_clicked()
 {
-    QString nameOfNote = ui->lineEdit->text();             // создание строк и заполнение
+    /*QString nameOfNote = ui->lineEdit->text();             // создание строк и заполнение
     QString note = ui->plainTextEdit->toPlainText();       //
     ui->lineEdit->clear();                                 //очистка поля названия
     ui->plainTextEdit->clear();                            //очистка поля заметки
     CParser::SaveFile(nameOfNote,note);                    //вызов функции сохранеия файла
-    emit close();                                          //отправка сигнала закрытия
+    emit close();   */                                       //отправка сигнала закрытия
+    CObjectNote note(ui->lineEdit->text().toStdString(),ui->plainTextEdit->toPlainText().toStdString());
+    CParser::SaveFile(note);
+}
+
+void noteWindows::emitSignal()
+{
+    emit allNote();
 }

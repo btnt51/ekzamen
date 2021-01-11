@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QTableWidget>
 #include "cparser.h"
+#include "notewindows.h"
 
 namespace Ui {
 class allNotes;
@@ -19,6 +20,8 @@ public:
 
 private slots:
     void updateTable();
+    void openNoteWindow();
+    void showThis();
 
 private:
     Ui::allNotes *ui;      //привязка формы
