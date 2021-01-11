@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <fstream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,24 +14,35 @@ MainWindow::MainWindow(QWidget *parent)
     ui->allNotes->setText(tr("All notes"));     //
     connect(ui->actionWhite_theme, SIGNAL(triggered()), this, SLOT(setLightTheme()));     //привязка действия к слотам выбора тем
     connect(ui->actionDark_theme, SIGNAL(triggered()),this, SLOT(setDarkTheme()));        //
-    note = new noteWindows(parent = nullptr,true);                    //создание объекта окна
-                       //
+    std::ifstream file;
+    file.open("D:\\db.bin");
+    file.read((char*)&Book,sizeof(noteBook));
+    Book.print();
+    file.close();
 }
 
 MainWindow::~MainWindow()
 {
+    std::ofstream file;
+    file.open("D:\\db.bin");
+    file.write((char*)&Book,sizeof(noteBook));
+    //Book.print();
+    file.close();
     delete ui;                                    //удаление формы
 }
 
 
 void MainWindow::on_newNote_clicked()
 {
+    QWidget *parent = nullptr;
+    note = new noteWindows(parent, &Book);
     note->show();                                 //отображение окна при нажатии на кнопку
 }
 
 void MainWindow::on_allNotes_clicked()
 {
-    allnotes = new allNotes();
+    QWidget *parent = nullptr;
+    allnotes = new allNotes(parent,&Book);
     allnotes->show();                             //
 }
 

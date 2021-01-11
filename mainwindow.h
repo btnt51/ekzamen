@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "notewindows.h"
 #include "allnotes.h"
+#include "noteBook.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,5 +29,6 @@ private:
     noteWindows *note;           //указатель на окно новой заметки
     allNotes *allnotes;          //указатель на окно всех заметок
     QWidget *widget;             //указатель на виджет
+    noteBook Book;
 };
 #endif // MAINWINDOW_H
