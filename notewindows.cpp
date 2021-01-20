@@ -8,11 +8,10 @@ noteWindows::noteWindows(QWidget *parent, noteBook *Book) :
     ui(new Ui::noteWindows), book(*Book)
 {
     ui->setupUi(this);                                                  //установка формы
-    setWindowTitle(tr("New note"));                                     //установка названия окна
+    setWindowTitle("New note");                                     //установка названия окна
     setWindowFlag(Qt::WindowContextHelpButtonHint,false);               //удаление кнопки
-    ui->saveButton->setText(tr("Save"));                                //установка названия кнопки
-    ui->lineEdit->setPlaceholderText(tr("Enter name of the note"));     //установка плэйсхолдера
-    //connect(this, &QDialog::done, this, &noteWindows::emitSignal);
+    ui->saveButton->setText("Save");                                //установка названия кнопки
+    ui->lineEdit->setPlaceholderText("Enter name of the note");     //установка плэйсхолдера
 }
 
 
@@ -46,4 +45,5 @@ void noteWindows::on_saveButton_clicked()
     ui->plainTextEdit->clear();                            //очистка поля заметки
     emit close();                                          //отправка сигнала закрытия
 }
+
 

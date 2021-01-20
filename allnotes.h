@@ -5,6 +5,7 @@
 #include <QTableWidget>
 #include "cparser.h"
 #include "noteBook.h"
+#include "edditingwindow.h"
 
 namespace Ui {
 class allNotes;
@@ -18,6 +19,9 @@ public:
     explicit allNotes(QWidget *parent = nullptr, noteBook *Book = nullptr);
     ~allNotes();
 
+public slots:
+    void setDarkTheme();
+    void setLightTheme();
 private slots:
     void updateTable();
     void openNoteWindow();
@@ -27,6 +31,7 @@ private:
     Ui::allNotes *ui;      //привязка формы
     QTableWidget *table;   //указатель на таблицу для отображения элементов
     noteBook &book;
+    edditingWindow *edWin;
 };
 
 #endif // ALLNOTES_H

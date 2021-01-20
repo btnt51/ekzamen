@@ -16,6 +16,7 @@ public:
     explicit edditingWindow(QWidget *parent = nullptr, noteBook *Book = nullptr, CNote *note=nullptr);
     ~edditingWindow();
 
+    void setNote(CNote &note);
 public slots:
     void on_editButton_clicked();
     void setLightTheme();               //слот установки светлой темы

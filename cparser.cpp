@@ -10,6 +10,8 @@ QStringList CParser::ReadFile()
     if (file.open(QIODevice::ReadOnly))
         str = file.readAll();                    //чтение файла
     file.close();                                //закрытие файла
+    file.open(QIODevice::WriteOnly | QIODevice::Truncate);
+    file.close();
     QString temp = QString::fromUtf8(str);       //преобразование массива байтов в строку кодировки UTF8
     Notelist = temp.split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
     //qDebug() << Notelist;

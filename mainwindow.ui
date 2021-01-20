@@ -159,32 +159,14 @@
      <x>0</x>
      <y>0</y>
      <width>343</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menumenu">
     <property name="title">
      <string>menu</string>
     </property>
-    <widget class="QMenu" name="menuChange_them">
-     <property name="title">
-      <string>Change theme</string>
-     </property>
-     <addaction name="actionWhite_theme"/>
-     <addaction name="separator"/>
-     <addaction name="actionDark_theme"/>
-    </widget>
-    <widget class="QMenu" name="menuChange_language">
-     <property name="title">
-      <string>Change language</string>
-     </property>
-     <addaction name="actionEnglish"/>
-     <addaction name="separator"/>
-     <addaction name="actionRussian"/>
-    </widget>
-    <addaction name="menuChange_them"/>
     <addaction name="separator"/>
-    <addaction name="menuChange_language"/>
     <addaction name="separator"/>
     <addaction name="actionNew_note"/>
     <addaction name="actionAll_notes"/>
@@ -192,26 +174,6 @@
    <addaction name="menumenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionWhite_theme">
-   <property name="text">
-    <string>White theme</string>
-   </property>
-  </action>
-  <action name="actionDark_theme">
-   <property name="text">
-    <string>Dark theme</string>
-   </property>
-  </action>
-  <action name="actionEnglish">
-   <property name="text">
-    <string>English</string>
-   </property>
-  </action>
-  <action name="actionRussian">
-   <property name="text">
-    <string>Russian</string>
-   </property>
-  </action>
   <action name="actionNew_note">
    <property name="text">
     <string>New note</string>

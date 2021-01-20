@@ -6,17 +6,21 @@ edditingWindow::edditingWindow(QWidget *parent, noteBook *Book, CNote *Note) :
     QDialog(parent), ui(new Ui::edditingWindow), note(*Note), book(*Book)
 {
     ui->setupUi(this);                                                  //установка формы
-    setWindowTitle(tr("Note") + QString::fromStdString(note.getName()));              //установка названия окна
+    setWindowTitle("Note " + QString::fromStdString(note.getName()));              //установка названия окна
     setWindowFlag(Qt::WindowContextHelpButtonHint,false);               //удаление кнопки
-    ui->delButton->setText(tr("Delete"));                               //установка названий кнопок
-    ui->editButton->setText(tr("Editing"));
+    ui->delButton->setText("Delete");                               //установка названий кнопок
+    ui->editButton->setText("Editing");
     ui->lineEdit->setText(QString::fromStdString(note.getName()));
     ui->plainTextEdit->appendPlainText(QString::fromStdString(note.getNote()));
+}
+void edditingWindow::setNote(CNote &note)
+{
+    this->note = note;
 }
 
 edditingWindow::~edditingWindow()
 {
-
+    book.AddingNote(note);
     delete ui;                              //удаление формы
 }
 
@@ -44,7 +48,8 @@ void edditingWindow::on_editButton_clicked()
     if(!(ui->lineEdit->text().toStdString() == note.getName()))
         note.setName(ui->lineEdit->text().toStdString());
     if(!(ui->plainTextEdit->toPlainText().toStdString() == note.getNote()))
-        note.setNote(ui->lineEdit->text().toStdString());
+        note.setNote(ui->plainTextEdit->toPlainText().toStdString());
+    book.AddingNote(note);
     emit close();
 }
 
@@ -52,6 +57,5 @@ void edditingWindow::on_editButton_clicked()
 
 void edditingWindow::on_delButton_clicked()
 {
-    int ID = note.getId();
-    book.DeletingNote(ID);
+    emit close();
 }

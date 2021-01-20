@@ -10,103 +10,35 @@ MainWindow::MainWindow(QWidget *parent)
     widget = new QWidget();                     // создание объектаа виджета
     widget->setLayout(ui->gridLayout);          // установка слоя на виджет
     setCentralWidget(widget);                   // установка центрального виджета
-    ui->newNote->setText(tr("New note"));       // установка названия кнопок
-    ui->allNotes->setText(tr("All notes"));     //
-    connect(ui->actionWhite_theme, SIGNAL(triggered()), this, SLOT(setLightTheme()));     //привязка действия к слотам выбора тем
-    connect(ui->actionDark_theme, SIGNAL(triggered()),this, SLOT(setDarkTheme()));        //
-    std::ifstream file;
-    file.open("D:\\db.bin");
-    file.read((char*)&Book,sizeof(noteBook));
-    Book.print();
-    file.close();
+    ui->newNote->setText("New note");       // установка названия кнопок
+    ui->allNotes->setText("All notes");     //
+    connect(ui->actionNew_note,SIGNAL(triggered()), this, SLOT(on_newNote_clicked()));
+    connect(ui->actionAll_notes,SIGNAL(triggered()), this, SLOT(on_allNotes_clicked()));
+    Book.getFromFile();
+    setWindowTitle("Notebook");
+    QWidget *PARENT = nullptr;
+    note = new noteWindows(PARENT, &Book);
+
 }
 
 MainWindow::~MainWindow()
 {
-    std::ofstream file;
-    file.open("D:\\db.bin");
-    file.write((char*)&Book,sizeof(noteBook));
-    //Book.print();
-    file.close();
-    delete ui;                                    //удаление формы
+    Book.saveInFile();
+    delete ui;   //удаление формы
+    delete note;
+    delete allnotes;
 }
 
 
 void MainWindow::on_newNote_clicked()
 {
-    QWidget *parent = nullptr;
-    note = new noteWindows(parent, &Book);
     note->show();                                 //отображение окна при нажатии на кнопку
 }
 
 void MainWindow::on_allNotes_clicked()
 {
-    QWidget *parent = nullptr;
-    allnotes = new allNotes(parent,&Book);
+    QWidget *PARENT = nullptr;
+    allnotes = new allNotes(PARENT,&Book);
     allnotes->show();                             //
 }
-
-void MainWindow::setDarkTheme()
-{
-    note->setDarkTheme();                         //вызов слота темы
-    ui->statusbar->setStyleSheet("background-color:rgb(46, 52, 54)");                   //цветовая тема для отображаемых окон
-    widget->setStyleSheet("background-color:rgb(46, 52, 54)");
-    this->setStyleSheet("background-color:rgb(46, 52, 54)");
-    ui->allNotes->setStyleSheet("background-color:rgb(85, 87, 83); color:white");
-    ui->newNote->setStyleSheet("background-color:rgb(85, 87, 83); color:white");
-    ui->menubar->setStyleSheet("background-color:rgb(85, 87, 83); color:white");
-    ui->menumenu->setStyleSheet("background-color:rgb(85, 87, 83); color:white");
-}
-
-
-void MainWindow::setLightTheme()
-{
-    note->setLightTheme();                       //вызов слота темы
-    widget->setStyleSheet("");
-    ui->statusbar->setStyleSheet("");            //цветовая тема для отображаемых окон
-    this->setStyleSheet("");
-    ui->menumenu->setStyleSheet("");
-    ui->allNotes->setStyleSheet("");
-    ui->newNote->setStyleSheet("");
-    ui->menubar->setStyleSheet("");
-}
-
-
-//void MainWindow::setRusLang()
-//{
-//    qApp->removeTranslator(&translater);
-//    translater.load(":/translate_ru/QtLanguage_ru");
-//    qApp->installTranslator(&translater);
-//}
-
-
-//void MainWindow::setEngLang()
-//{
-//    qApp->removeTranslator(&translater);
-//    translater.load(":/translate_en/QtLanguage_en");
-//    qApp->installTranslator(&translater);
-//}
-
-
-//void MainWindow::on_changeLangBut_clicked()
-//{
-//    if(isCHanged)
-//    {
-//        setRusLang();
-//        isCHanged = false;
-//    }
-//    else
-//    {
-//        setEngLang();
-//        isCHanged = true;
-//    }
-//}
-
-
-//void MainWindow::changeEvent(QEvent* event)
-//{
-//   if(event->type() == QEvent::LanguageChange)
-//       ui->retranslateUi(this);
-//}
-
 
