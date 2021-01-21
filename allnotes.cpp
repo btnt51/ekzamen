@@ -61,6 +61,7 @@ void allNotes::openNoteWindow()
     CNote *notes = new CNote(name.toStdString(), note.toStdString());
     QWidget *Parent = nullptr;
     edWin = new edditingWindow(Parent, &book, notes);
+    edWin->setNote(*notes);
     int id = table->item(row, 2)->text().toInt();
     book.Editing(id);
     edWin->show();

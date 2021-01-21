@@ -17,11 +17,13 @@ public:
     ~edditingWindow();
 
     void setNote(CNote &note);
+
+    void closeEvent(QCloseEvent *event) override;
 public slots:
     void on_editButton_clicked();
-    void setLightTheme();               //слот установки светлой темы
-    void setDarkTheme();                //слот установки темной темы
 
+signals:
+    void MySignalToIndicateThatTheWindowIsClosing();
 private slots:
     void on_delButton_clicked();
 

@@ -19,9 +19,6 @@ public:
     explicit allNotes(QWidget *parent = nullptr, noteBook *Book = nullptr);
     ~allNotes();
 
-public slots:
-    void setDarkTheme();
-    void setLightTheme();
 private slots:
     void updateTable();
     void openNoteWindow();

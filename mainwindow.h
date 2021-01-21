@@ -21,8 +21,6 @@ public:
 private slots:
     void on_newNote_clicked();   //слот нажатия на кнопку "Новая заметка"
     void on_allNotes_clicked();  //слот нажатия на кнопку "Все заметки"
-    void setDarkTheme();         //слот установки темной темы
-    void setLightTheme();        //слот установки светлой темы
 
 private:
     Ui::MainWindow *ui;          //указатель на форму главного окна
