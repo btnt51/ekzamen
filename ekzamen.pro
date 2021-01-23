@@ -11,7 +11,7 @@ CONFIG += c++20
 SOURCES += \
     allnotes.cpp \
     cparser.cpp \
-    edditingwindow.cpp \
+    editingWindow.cpp \
     main.cpp \
     mainwindow.cpp \
     noteBook.cpp \
@@ -20,14 +20,14 @@ SOURCES += \
 HEADERS += \
     allnotes.h \
     cparser.h \
-    edditingwindow.h \
+    editingWindow.h \
     mainwindow.h \
     noteBook.h \
     notewindows.h
 
 FORMS += \
     allnotes.ui \
-    edditingwindow.ui \
+    editingWindow.ui \
     mainwindow.ui \
     notewindows.ui
 

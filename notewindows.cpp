@@ -21,26 +21,18 @@ noteWindows::~noteWindows()
     delete ui;                              //удаление формы
 }
 
-void noteWindows::setDarkTheme()
+void noteWindows::closeEvent(QCloseEvent *event)
 {
-    this->setStyleSheet("background-color:rgb(46, 52, 54)");            //установка цветовой темы
-    ui->lineEdit->setStyleSheet("color: rgb(255, 0, 255)");
-    ui->plainTextEdit->setStyleSheet("color: rgb(182, 0, 255)");
-    ui->saveButton->setStyleSheet("background-color:rgb(85, 87, 83); color:white");
+    emit openMain();
+    event->accept();
 }
-
-void noteWindows::setLightTheme()
-{
-    this->setStyleSheet("");                //установка цветовой темы
-    ui->lineEdit->setStyleSheet("");
-    ui->plainTextEdit->setStyleSheet(""); 
-    ui->saveButton->setStyleSheet("");
-}
-
 
 void noteWindows::on_saveButton_clicked()
 {
-    book.AddingNote(ui->lineEdit->text().toStdString(), ui->plainTextEdit->toPlainText().toStdString());
+    if(ui->lineEdit->text().toStdString().length() != 0 && ui->plainTextEdit->toPlainText().toStdString().length() != 0)
+    {
+        book.AddingNote(ui->lineEdit->text().toStdString(), ui->plainTextEdit->toPlainText().toStdString());
+    }
     ui->lineEdit->clear();                                 //очистка поля названия
     ui->plainTextEdit->clear();                            //очистка поля заметки
     emit close();                                          //отправка сигнала закрытия

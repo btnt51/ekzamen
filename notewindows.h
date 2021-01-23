@@ -19,11 +19,14 @@ class noteWindows : public QDialog
 public:
     explicit noteWindows(QWidget *parent = nullptr, noteBook *book = nullptr);
     ~noteWindows();
+    void closeEvent(QCloseEvent *event) override;
 
 public slots:
-    void setLightTheme();               //слот установки светлой темы
-    void setDarkTheme();                //слот установки темной темы
     void on_saveButton_clicked();       //слот кнопки сохранения
+
+signals:
+    void openMain();
+
 
 private:
     Ui::noteWindows *ui;                //указатель формы заметок

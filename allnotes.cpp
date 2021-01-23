@@ -1,25 +1,11 @@
 #include "allnotes.h"
 #include "ui_allnotes.h"
 
-allNotes::allNotes(QWidget *parent, noteBook *Book) :
-    QDialog(parent), ui(new Ui::allNotes), book(*Book)
+allNotes::allNotes(QWidget *parent, noteBook *Book, editingWindow *EDWIN) :
+    QDialog(parent), ui(new Ui::allNotes), book(*Book), edWin(EDWIN)
 {
     ui->setupUi(this);             //установка формы
     setWindowFlag(Qt::WindowContextHelpButtonHint,false);               //удаление кнопки
-    updateTable();
-
-}
-
-allNotes::~allNotes()
-{
-    delete ui;
-    delete table;
-}
-
-void allNotes::updateTable()
-{
-    //qDebug() << "name of note " << nameOfNotes;             //отладочная информация, вывод листа имен
-    //qDebug() << "notes to output" << notesToOutput;         //отладочная информация, вывод листа заметок
     table = new QTableWidget(book.getNoteList().size(),3,this);    //создание таблицы
     QTableWidgetItem *hnm_1 = new QTableWidgetItem();       //создание объекта
         hnm_1->setText("Name");                         //название первого столбца
@@ -52,6 +38,19 @@ void allNotes::updateTable()
     connect(table, &QTableWidget::itemSelectionChanged, this, &allNotes::openNoteWindow);
 }
 
+allNotes::~allNotes()
+{
+    delete ui;
+    delete table;
+}
+
+void allNotes::closeEvent(QCloseEvent *event)
+{
+    emit openMain();
+    event->accept();
+}
+
+
 void allNotes::openNoteWindow()
 {
     int row = table->currentRow();
@@ -59,12 +58,11 @@ void allNotes::openNoteWindow()
     name = table->item(row, 0)->text();
     note = table->item(row, 1)->text();
     CNote *notes = new CNote(name.toStdString(), note.toStdString());
-    QWidget *Parent = nullptr;
-    edWin = new edditingWindow(Parent, &book, notes);
+    //edWin = new editingWindow(Parent, &book, notes);
     edWin->setNote(*notes);
     int id = table->item(row, 2)->text().toInt();
     book.Editing(id);
     edWin->show();
-    this->close();
+    this->reject();
 }
 
