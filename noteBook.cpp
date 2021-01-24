@@ -68,14 +68,6 @@ int noteBook::gettingId(std::string name) {
     return iter->getId();
 }
 
-void noteBook::print()
-{
-    std::for_each(notelist.begin(), notelist.end(),[](CNote &el)
-    {
-       el.print();
-       std::cout << std::endl;
-    });
-}
 
 void noteBook::saveInFile()
 {
