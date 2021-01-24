@@ -23,15 +23,15 @@ noteWindows::~noteWindows()
 
 void noteWindows::closeEvent(QCloseEvent *event)
 {
-    emit openMain();
-    event->accept();
+    emit openMain();        //отпрака сигнала на открытие главного окна
+    event->accept();        //окно закрыто
 }
 
 void noteWindows::on_saveButton_clicked()
 {
     if(ui->lineEdit->text().toStdString().length() != 0 && ui->plainTextEdit->toPlainText().toStdString().length() != 0)
     {
-        book.AddingNote(ui->lineEdit->text().toStdString(), ui->plainTextEdit->toPlainText().toStdString());
+        book.AddingNote(ui->lineEdit->text().toStdString(), ui->plainTextEdit->toPlainText().toStdString());      //добавление заметки
     }
     ui->lineEdit->clear();                                 //очистка поля названия
     ui->plainTextEdit->clear();                            //очистка поля заметки

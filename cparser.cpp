@@ -13,20 +13,20 @@ QStringList CParser::ReadFile()
     file.open(QIODevice::WriteOnly | QIODevice::Truncate);
     file.close();
     QString temp = QString::fromUtf8(str);       //преобразование массива байтов в строку кодировки UTF8
-    Notelist = temp.split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
+    Notelist = temp.split(QRegExp("[\r\n]"),QString::SkipEmptyParts);       //разделение на заметки
     //qDebug() << Notelist;
     return Notelist;
 }
 void CParser::SaveFile(QString nameOfNote, QString note)
 {
-    note.replace("\n","@%");
+    note.replace("\n","@%");                         //замена символов
     QString saveLine = nameOfNote + "_" + note;      //создание объекта для разделения названия и текста
     QFile file("D:\\db.txt");                           //открытие файла
     if(file.open(QIODevice::Append |QIODevice::Text))   //цикл для записи с сохранением перехода на новую строку
     {
-        QTextStream in(&file);
-        in.setCodec("UTF-8");
-        in << "\n" << saveLine.toUtf8();
+        QTextStream in(&file);                          //Создание текстового потока в файл
+        in.setCodec("UTF-8");                           //установка кодировки
+        in << "\n" << saveLine.toUtf8();                //сохранение по линиям
     }
     file.close();                                        //закрытие файла
 }

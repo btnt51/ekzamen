@@ -21,17 +21,17 @@ allNotes::allNotes(QWidget *parent, noteBook *Book, editingWindow *EDWIN) :
         QTableWidgetItem *item3 = new QTableWidgetItem();
         item->setText(QString::fromStdString(element.getName()));                      //содежимое первого столбца
         item->setFlags(item->flags() &~ Qt::ItemIsEditable);
-        table->setItem(i, 0, item);                         //установка навзаний заметок в таблицу
+        table->setItem(i, 0, item);                         //установка названий заметок в таблицу
         item2->setText(QString::fromStdString(element.getNote()));                   //содержимое второго столбца
         item2->setFlags(item2->flags() &~ Qt::ItemIsEditable);          //установка текста заметок в таблицу
-        table->setItem(i, 1, item2);
-        item3->setText(QString::number(element.getId()));
+        table->setItem(i, 1, item2);                         //установка заметок в таблицу
+        item3->setText(QString::number(element.getId()));                            //содежимое третьего столбца
         item3->setFlags(item3->flags() &~ Qt::ItemIsEditable);
-        table->setItem(i, 2, item3);
+        table->setItem(i, 2, item3);                        //установка номеров заметок в таблицу
         i++;
     }
-    table->setColumnHidden(2, true);
-    table->setShowGrid(false);
+    table->setColumnHidden(2, true);                        //отключение отображение 3 столбца
+    table->setShowGrid(false);                              //отключение сетки
     table->setSelectionMode(QAbstractItemView::SingleSelection);
     table->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->verticalLayout->addWidget(table);                   //добавление виджета вертикального слоя в таблицу
@@ -48,22 +48,22 @@ allNotes::~allNotes()
 
 void allNotes::closeEvent(QCloseEvent *event)
 {
-    emit openMain();
-    event->accept();
+    emit openMain();     //отпрака сигнала на открытие главного окна
+    event->accept();     //окно закрыто
 }
 
 
 void allNotes::openNoteWindow()
 {
-    int row = table->currentRow();
-    QString name{},note{};
-    name = table->item(row, 0)->text();
-    note = table->item(row, 1)->text();
-    CNote *notes = new CNote(name.toStdString(), note.toStdString());
-    edWin->setNote(*notes);
-    int id = table->item(row, 2)->text().toInt();
-    book.Editing(id);
-    edWin->show();
-    this->reject();
+    int row = table->currentRow();          //индекс текущего ряда
+    QString name{},note{};                  //создание переменных
+    name = table->item(row, 0)->text();     //получение данных названия из таблицы
+    note = table->item(row, 1)->text();     //получение данных содержимого из таблицы
+    CNote *notes = new CNote(name.toStdString(), note.toStdString());   //создание указателя на заметку
+    edWin->setNote(*notes);                 //установка заметки
+    int id = table->item(row, 2)->text().toInt();                       //получение id заметки из таблицы
+    book.Editing(id);                       //удаление заметки из записной книжки по id
+    edWin->show();                          //показать окно, отвечающее за изменение заметки
+    this->reject();                         //закрытие окна
 }
 

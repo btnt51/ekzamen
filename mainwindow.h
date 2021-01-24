@@ -27,6 +27,6 @@ private:
     noteWindows *note;           //указатель на окно новой заметки
     allNotes *allnotes;          //указатель на окно всех заметок
     QWidget *widget;             //указатель на виджет
-    noteBook Book;
+    noteBook Book;               //записная книжка
 };
 #endif // MAINWINDOW_H

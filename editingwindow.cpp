@@ -10,9 +10,7 @@ editingWindow::editingWindow(QWidget *parent, noteBook *Book, CNote *Note) :
     setWindowFlag(Qt::WindowContextHelpButtonHint,false);               //удаление кнопки подсказки
     ui->delButton->setText("Delete");                               //установка названий кнопок
     ui->editButton->setText("Save changes");
-    ui->lineEdit->setText(QString::fromStdString(note.getName()));
-    ui->plainTextEdit->setPlainText(QString::fromStdString(note.getNote()));
-    connect(ui->delButton, SIGNAL(clicked()), this, SLOT(reject()));
+    connect(ui->delButton, SIGNAL(clicked()), this, SLOT(reject()));        //установка связей
     connect(ui->delButton, SIGNAL(clicked()), this, SLOT(opM()));
     connect(ui->editButton, SIGNAL(clicked()), this, SLOT(close()));
 }
@@ -20,8 +18,8 @@ editingWindow::editingWindow(QWidget *parent, noteBook *Book, CNote *Note) :
 void editingWindow::setNote(CNote &Note)
 {
     setWindowTitle("Note " + QString::fromStdString(Note.getName()));              //установка названия окна
-    ui->lineEdit->setText(QString::fromStdString(Note.getName()));
-    ui->plainTextEdit->setPlainText(QString::fromStdString(Note.getNote()));
+    ui->lineEdit->setText(QString::fromStdString(Note.getName()));                 //установка названия заметки
+    ui->plainTextEdit->setPlainText(QString::fromStdString(Note.getNote()));       //установка текста заметки
 }
 
 editingWindow::~editingWindow()
@@ -32,7 +30,7 @@ editingWindow::~editingWindow()
 
 void editingWindow::opM()
 {
-    emit openMain();
+    emit openMain();                        //отпрака сигнала на открытие главного окна
 }
 
 void editingWindow::closeEvent(QCloseEvent* event)
@@ -40,11 +38,11 @@ void editingWindow::closeEvent(QCloseEvent* event)
     //on_editButton_clicked();
 
     if(!(ui->lineEdit->text().toStdString() == note.getName()))
-        note.setName(ui->lineEdit->text().toStdString());
+        note.setName(ui->lineEdit->text().toStdString());                       //изменения названия заметки
     if(!(ui->plainTextEdit->toPlainText().toStdString() == note.getNote()))
-        note.setNote(ui->plainTextEdit->toPlainText().toStdString());
+        note.setNote(ui->plainTextEdit->toPlainText().toStdString());           //изменение текста заметки
     if(!(note.getName().length() == 0 || note.getNote().length() == 0))
-        book.AddingNote(note);
-    opM();
-    event->accept();
+        book.AddingNote(note);                                                  //сохранение заметки
+    opM();                  //вызов функции отправки сигнала
+    event->accept();        //окно закрыто
 }

@@ -11,42 +11,42 @@ MainWindow::MainWindow(QWidget *parent)
     widget->setLayout(ui->gridLayout);          // установка слоя на виджет
     setCentralWidget(widget);                   // установка центрального виджета
     ui->newNote->setText("New note");       // установка названия кнопок
-    ui->allNotes->setText("All notes");     //
-    connect(ui->actionNew_note,SIGNAL(triggered()), this, SLOT(on_newNote_clicked()));
+    ui->allNotes->setText("All notes");
+    connect(ui->actionNew_note,SIGNAL(triggered()), this, SLOT(on_newNote_clicked()));      //установка связей
     connect(ui->actionAll_notes,SIGNAL(triggered()), this, SLOT(on_allNotes_clicked()));
-    Book.getFromFile();
-    setWindowTitle("Notebook");
-    QWidget *PARENT = nullptr;
-    note = new noteWindows(PARENT, &Book);
-    connect(note,SIGNAL(openMain()), this,SLOT(show()));
+    Book.getFromFile();                         //загрузка всех заметок
+    setWindowTitle("Notebook");                 //установка названия главного окна
+    QWidget *PARENT = nullptr;                  //необходимо для создания объекта
+    note = new noteWindows(PARENT, &Book);      //создание окна новой заметки
+    connect(note,SIGNAL(openMain()), this,SLOT(show()));              //установка связи
 }
 
 MainWindow::~MainWindow()
 {
-    Book.saveInFile();
+    Book.saveInFile();                          //сохранение заметки
     delete ui;   //удаление формы
-    delete note;
-    delete allnotes;
+    delete note;                                //удаление окна новой заметки
+    delete allnotes;                            //удаление окна всвех заметок
 }
 
 
 void MainWindow::on_newNote_clicked()
 {
-    this->close();
+    this->close();                                //закрытие главного окна
     note->show();                                 //отображение окна при нажатии на кнопку
 
 }
 
 void MainWindow::on_allNotes_clicked()
 {
-    this->close();
-    QWidget *PARENT = nullptr;
+    this->close();                                //закрытие главного окна
+    QWidget *PARENT = nullptr;                    //необходимо для создания объекта
     CNote *notes = new CNote(" ", " ");
-    editingWindow *edWin = new editingWindow(PARENT, &Book, notes);
-    allnotes = new allNotes(PARENT,&Book, edWin);
-    connect(edWin,SIGNAL(openMain()), this,SLOT(show()));
+    editingWindow *edWin = new editingWindow(PARENT, &Book, notes);           //создания окна редактирования заметок
+    allnotes = new allNotes(PARENT,&Book, edWin);                             //создание окна всех заметок
+    connect(edWin,SIGNAL(openMain()), this,SLOT(show()));                     //установка связей
     connect(allnotes,SIGNAL(openMain()), this,SLOT(show()));
-    allnotes->show();                                               //
+    allnotes->show();                                                         //открытие окна со всеми заметками
 }
 
 

@@ -18,18 +18,18 @@ public:
 
 
 
-    void closeEvent(QCloseEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;     //закрытие формы
 public slots:
 
-    void opM();
-    void setNote(CNote &note);
+    void opM();                                       //слот отправки сигнала
+    void setNote(CNote &note);                        //слот установки записки
 signals:
-    void openMain();
+    void openMain();                                  //сигнал открытия главного окна
 
 private:
-    Ui::editingWindow *ui;
-    CNote &note;
-    noteBook &book;
+    Ui::editingWindow *ui;                            //привязка формы
+    CNote &note;                                      //ссылка на заметку
+    noteBook &book;                                   //ссылка на записную книжку
 };
 
 #endif // editingWindow_H

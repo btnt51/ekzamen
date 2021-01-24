@@ -19,18 +19,18 @@ class noteWindows : public QDialog
 public:
     explicit noteWindows(QWidget *parent = nullptr, noteBook *book = nullptr);
     ~noteWindows();
-    void closeEvent(QCloseEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;           //закрытие формы
 
 public slots:
     void on_saveButton_clicked();       //слот кнопки сохранения
 
 signals:
-    void openMain();
+    void openMain();                    //сигнал открытия главного окна
 
 
 private:
     Ui::noteWindows *ui;                //указатель формы заметок
-    noteBook &book;
+    noteBook &book;                     //ссылка на записную книжку
 
 };
 
