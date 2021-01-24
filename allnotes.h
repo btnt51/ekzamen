@@ -6,7 +6,7 @@
 #include <QCloseEvent>
 #include "cparser.h"
 #include "noteBook.h"
-#include "editingWindow.h"
+#include "editingwindow.h"
 
 
 namespace Ui {

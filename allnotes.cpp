@@ -36,12 +36,14 @@ allNotes::allNotes(QWidget *parent, noteBook *Book, editingWindow *EDWIN) :
     table->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->verticalLayout->addWidget(table);                   //добавление виджета вертикального слоя в таблицу
     connect(table, &QTableWidget::itemSelectionChanged, this, &allNotes::openNoteWindow);
+
 }
 
 allNotes::~allNotes()
 {
     delete ui;
     delete table;
+    delete edWin;
 }
 
 void allNotes::closeEvent(QCloseEvent *event)
@@ -58,7 +60,6 @@ void allNotes::openNoteWindow()
     name = table->item(row, 0)->text();
     note = table->item(row, 1)->text();
     CNote *notes = new CNote(name.toStdString(), note.toStdString());
-    //edWin = new editingWindow(Parent, &book, notes);
     edWin->setNote(*notes);
     int id = table->item(row, 2)->text().toInt();
     book.Editing(id);

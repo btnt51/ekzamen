@@ -16,12 +16,13 @@ public:
     explicit editingWindow(QWidget *parent = nullptr, noteBook *Book = nullptr, CNote *note=nullptr);
     ~editingWindow();
 
-    void setNote(CNote &note);
+
 
     void closeEvent(QCloseEvent *event) override;
 public slots:
-    void on_editButton_clicked();
+
     void opM();
+    void setNote(CNote &note);
 signals:
     void openMain();
 

@@ -1,5 +1,5 @@
-#include "editingWindow.h"
-#include "ui_editingWindow.h"
+#include "editingwindow.h"
+#include "ui_editingwindow.h"
 
 
 editingWindow::editingWindow(QWidget *parent, noteBook *Book, CNote *Note) :
@@ -7,13 +7,14 @@ editingWindow::editingWindow(QWidget *parent, noteBook *Book, CNote *Note) :
 {
     ui->setupUi(this);                                                  //установка формы
     setWindowTitle("Note " + QString::fromStdString(note.getName()));              //установка названия окна
-    setWindowFlag(Qt::WindowContextHelpButtonHint,false);               //удаление кнопки
+    setWindowFlag(Qt::WindowContextHelpButtonHint,false);               //удаление кнопки подсказки
     ui->delButton->setText("Delete");                               //установка названий кнопок
     ui->editButton->setText("Save changes");
     ui->lineEdit->setText(QString::fromStdString(note.getName()));
     ui->plainTextEdit->setPlainText(QString::fromStdString(note.getNote()));
     connect(ui->delButton, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ui->delButton, SIGNAL(clicked()), this, SLOT(opM()));
+    connect(ui->editButton, SIGNAL(clicked()), this, SLOT(close()));
 }
 
 void editingWindow::setNote(CNote &Note)
@@ -25,19 +26,9 @@ void editingWindow::setNote(CNote &Note)
 
 editingWindow::~editingWindow()
 {
-    //book.AddingNote(note);
     delete ui;                              //удаление формы
 }
 
-void editingWindow::on_editButton_clicked()
-{
-    if(!(ui->lineEdit->text().toStdString() == note.getName()))
-        note.setName(ui->lineEdit->text().toStdString());
-    if(!(ui->plainTextEdit->toPlainText().toStdString() == note.getNote()))
-        note.setNote(ui->plainTextEdit->toPlainText().toStdString());
-    //book.AddingNote(note);
-    emit close();
-}
 
 void editingWindow::opM()
 {
@@ -47,11 +38,13 @@ void editingWindow::opM()
 void editingWindow::closeEvent(QCloseEvent* event)
 {
     //on_editButton_clicked();
+
     if(!(ui->lineEdit->text().toStdString() == note.getName()))
         note.setName(ui->lineEdit->text().toStdString());
     if(!(ui->plainTextEdit->toPlainText().toStdString() == note.getNote()))
         note.setNote(ui->plainTextEdit->toPlainText().toStdString());
-    emit openMain();
-    book.AddingNote(note);
+    if(!(note.getName().length() == 0 || note.getNote().length() == 0))
+        book.AddingNote(note);
+    opM();
     event->accept();
 }

@@ -19,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent)
     QWidget *PARENT = nullptr;
     note = new noteWindows(PARENT, &Book);
     connect(note,SIGNAL(openMain()), this,SLOT(show()));
-
 }
 
 MainWindow::~MainWindow()
@@ -42,15 +41,12 @@ void MainWindow::on_allNotes_clicked()
 {
     this->close();
     QWidget *PARENT = nullptr;
-
     CNote *notes = new CNote(" ", " ");
     editingWindow *edWin = new editingWindow(PARENT, &Book, notes);
     allnotes = new allNotes(PARENT,&Book, edWin);
     connect(edWin,SIGNAL(openMain()), this,SLOT(show()));
     connect(allnotes,SIGNAL(openMain()), this,SLOT(show()));
-    //allnotes->exec();
-    allnotes->show();                             //
-
+    allnotes->show();                                               //
 }
 
 
