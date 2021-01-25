@@ -12,6 +12,7 @@ SOURCES += \
     allnotes.cpp \
     cparser.cpp \
     editingWindow.cpp \
+    helpwindow.cpp \
     main.cpp \
     mainwindow.cpp \
     noteBook.cpp \
@@ -21,6 +22,7 @@ HEADERS += \
     allnotes.h \
     cparser.h \
     editingWindow.h \
+    helpwindow.h \
     mainwindow.h \
     noteBook.h \
     notewindows.h
@@ -28,6 +30,7 @@ HEADERS += \
 FORMS += \
     allnotes.ui \
     editingWindow.ui \
+    helpwindow.ui \
     mainwindow.ui \
     notewindows.ui
 

@@ -5,6 +5,7 @@
 #include "notewindows.h"
 #include "allnotes.h"
 #include "noteBook.h"
+#include "helpwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,6 +22,7 @@ public:
 private slots:
     void on_newNote_clicked();              //слот нажатия на кнопку "Новая заметка"
     void on_allNotes_clicked();             //слот нажатия на кнопку "Все заметки"
+    void openHelp();
 
 private:
     Ui::MainWindow *ui;                     //указатель на форму главного окна

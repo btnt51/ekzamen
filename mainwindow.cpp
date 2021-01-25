@@ -12,19 +12,20 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(widget);                   // установка центрального виджета
     ui->newNote->setText("New note");       // установка названия кнопок
     ui->allNotes->setText("All notes");
-    connect(ui->actionNew_note,SIGNAL(triggered()), this, SLOT(on_newNote_clicked()));      //установка связей
-    connect(ui->actionAll_notes,SIGNAL(triggered()), this, SLOT(on_allNotes_clicked()));
     Book.getFromFile();                         //загрузка всех заметок
     setWindowTitle("Notebook");                 //установка названия главного окна
     QWidget *PARENT = nullptr;                  //необходимо для создания объекта
     note = new noteWindows(PARENT, &Book);      //создание окна новой заметки
+    connect(ui->actionNew_note, SIGNAL(triggered()), this, SLOT(on_newNote_clicked()));      //установка связей
+    connect(ui->actionAll_notes, SIGNAL(triggered()), this, SLOT(on_allNotes_clicked()));
     connect(note,SIGNAL(openMain()), this,SLOT(show()));              //установка связи
+    connect(ui->actionHelp, SIGNAL(triggered()), this, SLOT(openHelp()));
 }
 
 MainWindow::~MainWindow()
 {
     Book.saveInFile();                          //сохранение заметки
-    delete ui;   //удаление формы
+    delete ui;                                  //удаление формы
     delete note;                                //удаление окна новой заметки
     delete allnotes;                            //удаление окна всвех заметок
     delete widget;
@@ -48,6 +49,12 @@ void MainWindow::on_allNotes_clicked()
     connect(edWin,SIGNAL(openMain()), this,SLOT(show()));                     //установка связей
     connect(allnotes,SIGNAL(openMain()), this,SLOT(show()));
     allnotes->show();                                                         //открытие окна со всеми заметками
+}
+
+void MainWindow::openHelp()
+{
+    helpWindow * help = new helpWindow;
+    help->show();
 }
 
 

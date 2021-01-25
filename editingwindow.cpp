@@ -17,8 +17,8 @@ editingWindow::editingWindow(QWidget *parent, noteBook *Book, CNote *Note) :
 
 void editingWindow::setNote(CNote &Note)
 {
-    note.setName(Note.getName());
-    note.setNote(Note.getNote());
+    note.setName(Note.getName());                                                  //установка названия заметки
+    note.setNote(Note.getNote());                                                  //установка содержимого заметки
     setWindowTitle("Note " + QString::fromStdString(note.getName()));              //установка названия окна
     ui->lineEdit->setText(QString::fromStdString(note.getName()));                 //установка названия заметки
     ui->plainTextEdit->setPlainText(QString::fromStdString(note.getNote()));       //установка текста заметки

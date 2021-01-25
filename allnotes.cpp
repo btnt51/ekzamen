@@ -35,8 +35,8 @@ allNotes::allNotes(QWidget *parent, noteBook *Book, editingWindow *EDWIN) :
     table->setShowGrid(false);                                      //отключение сетки
     table->setSelectionMode(QAbstractItemView::SingleSelection);    //установка возможности максимального количества выделеных ячеек
     table->setSelectionBehavior(QAbstractItemView::SelectRows);     //установка возможности выбрать только целый ряд
-    table->setColumnWidth(0, (this->width()/2) - 8);                //установка ширины столбца
-    table->setColumnWidth(1, (this->width()/2) - 8);                //установка ширины столбца
+    table->setColumnWidth(0, (this->width() / 2) - 20);                //установка ширины столбца
+    table->setColumnWidth(1, (this->width() / 2) - 20);                //установка ширины столбца
     ui->verticalLayout->addWidget(table);                           //добавление виджета вертикального слоя в таблицу
     connect(table, &QTableWidget::itemSelectionChanged, this, &allNotes::openNoteWindow);
 

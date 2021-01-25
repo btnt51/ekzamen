@@ -6,6 +6,7 @@
 #include "cparser.h"
 #include "noteBook.h"
 
+
 namespace Ui {
 class noteWindows;
 }

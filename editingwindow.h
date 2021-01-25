@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <noteBook.h>
 
+
 namespace Ui {
 class editingWindow;
 }

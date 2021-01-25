@@ -9,6 +9,7 @@
 #include "editingwindow.h"
 
 
+
 namespace Ui {
 class allNotes;
 }
