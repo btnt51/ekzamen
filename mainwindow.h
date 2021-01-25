@@ -19,14 +19,14 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_newNote_clicked();   //слот нажатия на кнопку "Новая заметка"
-    void on_allNotes_clicked();  //слот нажатия на кнопку "Все заметки"
+    void on_newNote_clicked();              //слот нажатия на кнопку "Новая заметка"
+    void on_allNotes_clicked();             //слот нажатия на кнопку "Все заметки"
 
 private:
-    Ui::MainWindow *ui;          //указатель на форму главного окна
-    noteWindows *note;           //указатель на окно новой заметки
-    allNotes *allnotes;          //указатель на окно всех заметок
-    QWidget *widget;             //указатель на виджет
-    noteBook Book;               //записная книжка
+    Ui::MainWindow *ui;                     //указатель на форму главного окна
+    noteWindows *note;                      //указатель на окно новой заметки
+    allNotes *allnotes;                     //указатель на окно всех заметок
+    QWidget *widget;                        //указатель на виджет
+    noteBook Book;                          //записная книжка
 };
 #endif // MAINWINDOW_H

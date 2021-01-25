@@ -22,15 +22,15 @@ public:
     void closeEvent(QCloseEvent *event) override;           //закрытие формы
 
 public slots:
-    void on_saveButton_clicked();       //слот кнопки сохранения
+    void on_saveButton_clicked();                           //слот кнопки сохранения
 
 signals:
-    void openMain();                    //сигнал открытия главного окна
+    void openMain();                                        //сигнал открытия главного окна
 
 
 private:
-    Ui::noteWindows *ui;                //указатель формы заметок
-    noteBook &book;                     //ссылка на записную книжку
+    Ui::noteWindows *ui;                                    //указатель формы заметок
+    noteBook &book;                                         //ссылка на записную книжку
 
 };
 

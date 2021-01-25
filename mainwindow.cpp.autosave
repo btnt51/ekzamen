@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     Book.saveInFile();                          //сохранение заметки
-    delete ui;   //удаление формы
+    delete ui;                                  //удаление формы
     delete note;                                //удаление окна новой заметки
     delete allnotes;                            //удаление окна всвех заметок
     delete widget;

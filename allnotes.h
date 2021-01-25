@@ -23,15 +23,15 @@ public:
     void closeEvent(QCloseEvent *event) override;           //закрытие формы
 
 private slots:
-    void openNoteWindow();          //слот открытия окна заметок
+    void openNoteWindow();                                  //слот открытия окна заметок
 signals:
-    void openMain();                //сигнал открытия главного окна
+    void openMain();                                        //сигнал открытия главного окна
 
 private:
-    Ui::allNotes *ui;      //привязка формы
-    QTableWidget *table;   //указатель на таблицу для отображения элементов
-    noteBook &book;         //ссылка на записную книжку
-    editingWindow *edWin;   //указатель на окно редактирования заметок
+    Ui::allNotes *ui;                                       //привязка формы
+    QTableWidget *table;                                    //указатель на таблицу для отображения элементов
+    noteBook &book;                                         //ссылка на записную книжку
+    editingWindow *edWin;                                   //указатель на окно редактирования заметок
 };
 
 #endif // ALLNOTES_H

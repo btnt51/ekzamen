@@ -16,18 +16,18 @@ noteBook::~noteBook() {
 CNote noteBook::Editing(int ID) {
     auto iter = std::find_if(notelist.begin(),notelist.end(),[&ID](auto &el)        //поиск заметки
     {return el.getId() == ID;});
-    CNote note = *iter;         //сохранение заметки для возврата
-    notelist.erase(iter);       //удаление заметки из списка
-    return note;                //возаращение заметки
+    CNote note = *iter;                                                             //сохранение заметки для возврата
+    notelist.erase(iter);                                                           //удаление заметки из списка
+    return note;                                                                    //возаращение заметки
 }
 
 void noteBook::AddingNote(std::string NAME, std::string NOTE) {
-    int ID={};               //создание переменной
-    if(!notelist.empty())    //установка id
+    int ID={};                                                                      //создание переменной
+    if(!notelist.empty())                                                           //установка id
          ID = notelist.front().getId();
     else
          ID = 0;
-    notelist.push_front(CNote(std::move(NAME), std::move(NOTE),ID+1));  //добавление заметки в начало списка
+    notelist.push_front(CNote(std::move(NAME), std::move(NOTE),ID+1));              //добавление заметки в начало списка
 }
 
 void noteBook::AddingNoteFromFIle(std::string NAME, std::string NOTE,int ID)
@@ -36,14 +36,14 @@ void noteBook::AddingNoteFromFIle(std::string NAME, std::string NOTE,int ID)
 }
 
 void noteBook::AddingNote(CNote Obj) {
-    if(Obj.getId() == 0)        //установка id
+    if(Obj.getId() == 0)                                                            //установка id
     {
         if(!notelist.empty())
              Obj.setId(notelist.front().getId()+1);
         else
              Obj.setId(1);
     }
-    notelist.push_front(Obj);       //добавление заметки в начало списка
+    notelist.push_front(Obj);                                                       //добавление заметки в начало списка
 }
 
 
@@ -71,7 +71,7 @@ int noteBook::gettingId(std::string name) {
 
 void noteBook::saveInFile()
 {
-    std::for_each(notelist.begin(),notelist.end(),[](CNote &el)         //сохрнение в файл
+    std::for_each(notelist.begin(),notelist.end(),[](CNote &el)                     //сохрнение в файл
     {
        CParser::SaveFile(QString::fromStdString(el.getName()), QString::fromStdString(el.getNote()));
     });
@@ -79,24 +79,24 @@ void noteBook::saveInFile()
 
 void noteBook::getFromFile()
 {
-    QStringList notesF = CParser::ReadFile();       //считываение заметок из файла
-    QStringList names{};                            //лист названий
-    QStringList notes{};                            //лист содержимого заметок
+    QStringList notesF = CParser::ReadFile();                                       //считываение заметок из файла
+    QStringList names{};                                                            //лист названий
+    QStringList notes{};                                                            //лист содержимого заметок
     std::for_each(notesF.begin(), notesF.end(),[&names, &notes](QString &element){
-            //цикл для отделения названия заметки от ее содержимого
-            int index = element.indexOf("_");       //получение позиции разделителя
-            QString temp = {};                      //создание временной строки
-            for (int i = 0; i < index; i++)         //цикл сохранения названия
+                                                                                    //цикл для отделения названия заметки от ее содержимого
+            int index = element.indexOf("_");                                       //получение позиции разделителя
+            QString temp = {};                                                      //создание временной строки
+            for (int i = 0; i < index; i++)                                         //цикл сохранения названия
                temp += element[i];
-            names.append(temp);     //добавление названия в список названий
-            temp.clear();           //очистка временной переменной
-            for(int i = index+1; i < element.size();i++)    //цикл сохрания содержимого заметки
+            names.append(temp);                                                     //добавление названия в список названий
+            temp.clear();                                                           //очистка временной переменной
+            for(int i = index+1; i < element.size();i++)                            //цикл сохрания содержимого заметки
                 temp += element[i];
-            temp.replace("@%","\n");        //замена символов
-            notes.append(temp);             //добавление содержимого заметки в список
+            temp.replace("@%","\n");                                                //замена символов
+            notes.append(temp);                                                     //добавление содержимого заметки в список
         });
 
-    for(int i = 0;i < names.size();i++)     //добавление заметок в записную книжку
+    for(int i = 0;i < names.size();i++)                                             //добавление заметок в записную книжку
     {
         this->AddingNoteFromFIle(names[i].toStdString(),notes[i].toStdString(),names.size()-i);
     }
